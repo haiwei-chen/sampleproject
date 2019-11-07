@@ -6,11 +6,13 @@ pipeline {
             }
         }
          stages {
-                 stage('Running Tests') {
+                 stage('Install Depedancies') {
                  steps {
                      sh 'pip3 --user install pytest'
                     }
                  }
+
+                 stage('Running Tests') {
                  steps {
                     sh 'py.test tests'
                     }
