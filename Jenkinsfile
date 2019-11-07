@@ -2,15 +2,23 @@ pipeline {
          agent any
         
          stages {
+                 stage('Install Depedancies') {
+                 steps {
+                     sh 'PYENV_HOME=$WORKSPACE/.pyenv/'
+                     sh 'virtualenv --no-site-packages $PYENV_HOME'
+                     sh 'source $PYENV_HOME/bin/activate'
+                     sh 'pip install -U pytest'
+                    }
+                 }
                  stage('Running Tests') {
                  steps {
-                    sh 'sudo py.test tests'
+                    sh 'py.test tests'
                     }
                 }
                  stage('Build Python Wheel') {
                  steps {
                     sh 'echo $JOB_NAME'
-                    sh 'python3 setup.py sdist bdist_wheel'
+                    sh 'python setup.py sdist bdist_wheel'
                     }
                  }
                 stage('Upload') {
