@@ -8,7 +8,7 @@ pipeline {
          stages {
                  stage('Install Depedancies') {
                  steps {
-                     sh 'pip3 install pytest'
+                     sh 'sudo pip3 install pytest'
                     }
                  }
 
@@ -20,7 +20,7 @@ pipeline {
                  stage('Build Python Wheel') {
                  steps {
                     sh 'echo $JOB_NAME'
-                    sh 'python3.7 setup.py sdist bdist_wheel'
+                    sh 'python3 setup.py sdist bdist_wheel'
                     }
                  }
                 stage('Upload') {
