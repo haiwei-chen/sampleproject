@@ -8,7 +8,7 @@ pipeline {
          stages {
                  stage('Install Depedancies') {
                  steps {
-                     sh 'sudo pip3 install pytest'
+                     sh 'pip3 install pytest'
                     }
                  }
 
