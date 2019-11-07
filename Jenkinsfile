@@ -8,6 +8,10 @@ pipeline {
          stages {
                  stage('Running Tests') {
                  steps {
+                     sh 'pip3 --user install pytest'
+                    }
+                 }
+                 steps {
                     sh 'py.test tests'
                     }
                 }
