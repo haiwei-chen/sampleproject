@@ -4,16 +4,16 @@ pipeline {
          stages {
                  stage('Install Depedancies') {
                  steps {
-                     sh 'PYENV_HOME=$WORKSPACE/.pyenv/'
-                     sh 'virtualenv --no-site-packages $PYENV_HOME'
-                     sh 'source $PYENV_HOME/bin/activate'
-                     sh 'pip install -U pytest'
+                     withEnv(["HOME=${env.WORKSPACE}"]){
+                     sh 'pip install pytest'
+                     }        
                     }
                  }
                  stage('Running Tests') {
-                 steps {
-                    sh 'py.test tests'
-                    }
+                      steps {
+                       withEnv(["HOME=${env.WORKSPACE}"]){
+                           sh 'py.test tests'
+                           }
                 }
                  stage('Build Python Wheel') {
                  steps {
