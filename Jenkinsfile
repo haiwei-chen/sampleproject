@@ -4,7 +4,7 @@ pipeline {
          stages {
                  stage('Running Tests') {
                  steps {
-                    sh 'py.test tests'
+                    sh 'sudo py.test tests'
                     }
                 }
                  stage('Build Python Wheel') {
